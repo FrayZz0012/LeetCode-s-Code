@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool uniqueOccurrences(vector<int>& arr) {
+    int len = arr.size();
+    int a[2001]={};
+    for(int i=0;i<len;i++){
+        if(arr[i]>=0)
+            a[arr[i]]++;
+        else{
+            a[1000-arr[i]]++;
+        }
+    }
+    int b[2001]={};
+    for(int i=0;i<2001;i++){
+        if(a[i]!=0&&b[a[i]]==-1){
+            return false;
+        }
+        b[a[i]]=-1;
+    }
+    return true;
+}
+
+int main(){
+    vector<int> v{1,2,2,1,1,3};
+    bool flag = uniqueOccurrences(v);
+    return 0;
+}
