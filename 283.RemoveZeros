@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void moveZeroes(vector<int>& nums) {
+    int len = nums.size();
+    int f=0,l=0;
+    for(;f<len;f++){
+        if(nums[f]!=0){
+            if(l!=f){
+                nums[l]=nums[f];
+            }
+            l++;
+        }
+    }
+    while(l<len){
+        nums[l++]=0;
+    }
+}
+
+int main(){
+    vector<int> v{1,2,2,0,1,1,3};
+    moveZeroes(v);
+    return 0;
+}
