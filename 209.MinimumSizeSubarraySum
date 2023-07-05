@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int minSubArrayLen(int target, vector<int>& nums) {
+    int len = nums.size();
+    int l=0,r=0;
+    int sum = 0;
+    int min = len+1;
+    while(r<len){
+        sum+=nums[r];
+        while(sum>=target){
+            if(r-l+1<min){
+                min=r-l+1;
+            }
+            sum-=nums[l++];
+        }
+            r++;
+    }
+    return min==len+1?0:min;
+}
+
+int main(){
+    vector<int> v{2,3,1,2,4,3};
+    minSubArrayLen(7,v);
+    return 0;
+}
