@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+    int len = nums.size();
+    vector<int> v = nums;
+    int a[101];
+    sort(nums.begin(),nums.end());
+    for(int i = len-1;i>=0;i--){
+        a[nums[i]]=i;
+    }
+    for(int i=0;i<len;i++){
+        nums[i]=a[v[i]];
+    }
+    return nums;
+}
+
+int main(){
+    vector<int> v{8,1,2,2,3};
+    smallerNumbersThanCurrent(v);
+    return 0;
+}
