@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> sortArrayByParityII(vector<int>& nums) {
+    int len = nums.size();
+    int odd = 1,even = 0;
+    while(odd < len){
+        while(even<len&&nums[even]%2==0){
+            even+=2;
+        }
+        while(odd<len&&nums[odd]%2==1){
+            odd+=2;
+        }
+        if(odd<len)//注意交换的条件
+            swap(nums[even],nums[odd]);
+    }
+    return nums;
+}
+
+int main(){
+    vector<int> v{4,2,5,7};
+    vector<int> s = sortArrayByParityII(v);
+    return 0;
+}
