@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool validMountainArray(vector<int>& arr) {
+    int len = arr.size();
+    if(len<3)
+        return false;
+    int l = 0,r = len-1;
+    while(l+1<len&&arr[l]<arr[l+1]){
+        l++;
+    }
+    while(r-1>=0&&arr[r]<arr[r-1]){
+        r--;
+    }
+    if(l==r&&l!=0&&r!=len-1)
+        return true;
+    else
+        return false;
+}
+
+int main(){
+    vector<int> v{1,2,3,3,1};
+    bool flag = validMountainArray(v);
+    return 0;
+}
