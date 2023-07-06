@@ -1,0 +1,117 @@
+class MyLinkedList {
+public:
+
+    struct LinkedNode{
+    int val;
+    LinkedNode* next;
+    LinkedNode(int x) : val(x),next(nullptr){}
+};
+
+LinkedNode *head = nullptr;
+
+MyLinkedList() {
+
+}
+
+int get(int index) {
+    int len = 0;
+    LinkedNode *q = head;
+    while(q != nullptr){
+        q = q->next;
+        len++;
+    }
+    if(index < len){
+        q= head;
+        while(index--){
+            q = q->next;
+        }
+        return q->val;
+    }
+    return -1;
+}
+
+void addAtHead(int val) {
+    LinkedNode *temp = new LinkedNode(val);
+    if(head == nullptr){
+        head = temp;
+    }
+    else{
+        temp->next = head;
+        head = temp;
+    }
+    //delete temp;
+}
+
+void addAtTail(int val) {
+    LinkedNode *temp = new LinkedNode(val);
+    LinkedNode *cur = head;
+    if(cur == nullptr){
+        head = temp;
+    }
+    else{
+        while(cur->next != nullptr){
+            cur = cur->next;
+        }
+        cur->next = temp;
+    }
+}
+
+void addAtIndex(int index, int val) {
+    int len = 0;
+    LinkedNode *q = head;
+    while(q != nullptr){
+        q = q->next;
+        len++;
+    }
+    if(index <= len){
+        LinkedNode *temp = new LinkedNode(val);
+        if(index == 0){
+            temp->next = head;
+            head = temp;
+        }
+        else{
+            q = head;
+            while(index>1){
+                index--;
+                q = q->next;
+            }
+            temp->next = q->next;
+            q->next = temp;
+        }
+    }
+}
+
+void deleteAtIndex(int index) {
+    int len = 0;
+    LinkedNode *q = head;
+    while(q != nullptr){
+        q = q->next;
+        len++;
+    }
+    if(index < len){
+        if(index == 0){
+            head = head->next;
+        }
+        else{
+            LinkedNode *pre = head;
+            q = head->next;
+            while(index>1){
+                index--;
+                pre = q;
+                q = q->next;
+            }
+            pre->next = q->next;
+        }
+    }
+}
+};
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList* obj = new MyLinkedList();
+ * int param_1 = obj->get(index);
+ * obj->addAtHead(val);
+ * obj->addAtTail(val);
+ * obj->addAtIndex(index,val);
+ * obj->deleteAtIndex(index);
+ */
