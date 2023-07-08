@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> m;
+    for(int i=0;i<nums.size();i++){
+        int x = target - nums[i];
+        if(m.find(x) != m.end()){
+            return {m[x],i};
+        }
+        m.insert({nums[i],i});
+    }
+    return {-1,-1};
+}
+
+int main(){
+    vector<int> v{2,7,3,11};
+    vector<int> v1{9,4,9,8,4};
+    twoSum(v,9);
+    return 0;
+}
