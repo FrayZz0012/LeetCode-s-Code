@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {//将4个数组分为两组，两个双重for循环
+    unordered_map<int,int> m;
+    int i,j;
+    int len = nums1.size();
+    int res = 0;
+    for(i=0;i<len;i++){
+        for(j=0;j<len;j++){
+            m[nums1[i]+nums2[j]]++;
+        }
+    }
+    for(i=0;i<len;i++){
+        for(j=0;j<len;j++){
+            if(m.find(-nums3[i]-nums4[j]) != m.end()){
+                res+=m[-nums3[i]-nums4[j]];
+            }
+        }
+    }
+    return res;
+}
+
+int main(){
+    vector<int> v1{2,7,3,11};
+    vector<int> v2{9,4,9,8,4};
+    vector<int> v3{9,4,9,8,4};
+    vector<int> v4{9,4,9,8,4};
+    fourSumCount(v1,v2,v3,v4);
+    return 0;
+}
