@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void reverses(string &s,int l,int r){
+    while(l<r){
+        swap(s[l++],s[r--]);
+    }
+}
+
+string reverseWords(string s) {
+    reverse(s.begin(),s.end());
+    for(int i=0;i<s.size();){
+        int index = i;
+        if(s[i] == ' '){
+            while(i < s.size() && s[i] == ' '){
+                i++;
+            }
+            i--;
+          //4种情况需要考虑清楚
+            if(index == 0){
+                s.erase(s.begin()+index,s.begin()+i+1);
+                i = index;
+            }
+            else if(i == s.size()-1){
+                s.erase(s.begin()+index,s.begin()+i+1);
+                return s;
+            }
+            else if(i - index > 0){
+                s.erase(s.begin()+index,s.begin()+i);
+                index++;
+                i = index;
+            }
+            else{
+                index++;
+                i = index;
+            }
+        }
+        while(i<s.size() && s[i] != ' '){
+            i++;
+        }
+        reverses(s,index,i-1);
+    }
+    return s;
+}
+};
