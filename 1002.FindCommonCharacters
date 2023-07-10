@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+    int len = words.size();
+    vector<string> res;
+    vector<vector<int>> v(len,vector<int> (26,0));//二维数组初始化
+    for(int i=0;i<len;i++){
+        for(int j=0;j<words[i].size();j++){
+            v[i][words[i][j]-'a']++;
+        }
+    }
+
+    for(int i=0;i<26;i++){
+        int m = 101;
+        for(int j=0;j<len;j++){
+            if(v[j][i] < m){
+                m = v[j][i];
+            }
+        }
+        if(m>0){
+            string s = "";
+            while(m--)
+            res.push_back(s+char(i+'a'));
+        }
+    }
+    return res;
+}
+};
