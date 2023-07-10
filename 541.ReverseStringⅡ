@@ -1,0 +1,27 @@
+class Solution {
+public:
+void reverseS(string &s,int l,int r){
+    while(l<r){
+        swap(s[l++],s[r--]);
+    }
+    return;
+}
+string reverseStr(string s, int k) {
+    int len = s.size();
+    int i = 0;
+    while(i<len){
+        if(i+k-1 >= len){
+            reverseS(s,i,len-1);
+        }
+        else{
+            reverseS(s,i,i+k-1);
+        }
+        i+=k;
+        if(i+k > len){
+            break;
+        }
+        i+=k;
+    }
+    return s;
+}
+};
