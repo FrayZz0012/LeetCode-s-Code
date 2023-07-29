@@ -16,20 +16,20 @@ string reverseWords(string s) {
             }
             i--;
           //4种情况需要考虑清楚
-            if(index == 0){
+            if(index == 0){//删除最前端空格
                 s.erase(s.begin()+index,s.begin()+i+1);
                 i = index;
             }
-            else if(i == s.size()-1){
+            else if(i == s.size()-1){//删除末端空格并返回字符串s
                 s.erase(s.begin()+index,s.begin()+i+1);
                 return s;
             }
-            else if(i - index > 0){
+            else if(i - index > 0){删除中间多余空格
                 s.erase(s.begin()+index,s.begin()+i);
                 index++;
                 i = index;
             }
-            else{
+            else{空格正常，单词之间只有一个空格
                 index++;
                 i = index;
             }
