@@ -1,0 +1,12 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {//掐头去尾
+    string str = s+s;
+    str.erase(0,1);
+    str.erase(str.size()-1,1);
+    if(str.find(s) != string::npos){
+        return true;
+    }
+    return false;
+}
+};
